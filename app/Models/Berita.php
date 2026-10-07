@@ -1,43 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Models\Berita;
+namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
 
-Route::get('/', function () {
-    return view('home',[
-        "title" => "Home"
-    ]);
-});
-
-
-Route::get('/profile', function () {
-    return view('profile', [
-        "title" => "Home",
-        "name" => "Hilda AS",
-        "nim" => "13242520029",
-        "prodi" => "Teknologi Informasi",
-        "gambar" => "james.jpg"
-    ]);
-});
-
-
-
-
-
-Route::get('/berita', function () {
-
-    return view('berita', [
-        "title" => "Berita",
-        "beritas" => Berita::ambildata(),
-    ]);
-});
-
-
-/// routing untuk handling 1 berita
-Route::get('berita/{slug}', function($slug){
-
-$data_berita = [
+class Berita extends Model
+{
+    private static $data_berita = [
     [
         "judul" => "MBG Mas Burhan Gunawan",
         "slug" => "mbg-mas-burhan-gunawan",
@@ -51,27 +20,4 @@ $data_berita = [
         "konten" => "Lorem ipsum dolor sit, amet consectetur adipisicing elit. At ducimus sed a vitae soluta accusamus perferendis nulla totam? Illo incidunt distinctio dolore. Vel, error eius unde qui officia velit neque iure, quidem pariatur alias ullam expedita, mollitia tempore quas dolores sit quia nostrum maxime perspiciatis facere recusandae aut. Deserunt libero fuga iste reprehenderit, esse numquam, recusandae deleniti dolor cumque soluta a et iusto officia quae minima, asperiores voluptas quis. Impedit sit error non, aliquid praesentium amet deleniti. Nobis accusantium corrupti quis dicta suscipit neque tempore aspernatur odio distinctio temporibus quidem dolores eos dignissimos, impedit asperiores provident illo veniam obcaecati omnis explicabo sit aliquam. A autem, cupiditate omnis in rerum iusto quis hic exercitationem eaque dolorum delectus, distinctio facere recusandae fugiat?",
     ]
 ];
-
-
-$singlenews = [];
-
-foreach($data_berita as $berita)
-{
-    if($berita["slug"] == $slug)
-    {
-        $singlenews = $berita;
-    }
 }
-
-
-    return view('beritatunggal',[
-        "title" => "judul berita tunggal",
-        "singlenews" => $singlenews,
-    ]);
-});
-
-Route::get('/contact', function () {
-    return view('contact', [
-        "title" => "contact"
-    ]);
-});
