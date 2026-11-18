@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\MahasiswaController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Berita;
 
@@ -32,3 +33,5 @@ Route::get('/contact', function () {
         "title" => "contact"
     ]);
 });
+
+Route::get('/datamahasiswa', [MahasiswaController::class, 'index']);
